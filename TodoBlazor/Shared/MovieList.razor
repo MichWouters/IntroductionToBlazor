@@ -1,0 +1,24 @@
+﻿<h3>MovieList</h3>
+
+@if (Movies == null)
+{
+    <div>
+        <img src="./images/loading.gif" width="250" height="250" alt="loading..." />
+    </div>
+}
+else if (!Movies.Any())
+{
+    <p>There are no movies to show</p>
+}
+else
+{
+    @foreach (Movie movie in Movies)
+    {
+        <p>Title: @movie.Title</p>
+    }
+}
+
+@code {
+    [Parameter]
+    public List<Movie> Movies { get; set; }
+}
