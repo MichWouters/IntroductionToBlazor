@@ -1,18 +1,24 @@
 ﻿@page "/"
 @page "/Home"
+@inject IMovieService service
 
-<MovieList Movies="@movies" />
+@if (movies == null)
+{
+    <div>
+        <img src="./images/loading.gif" width="250" height="250" alt="loading..." />
+    </div>
+}
+else
+{
+    <MovieList Movies="@movies" />
+}
 
 @code{
     List<Movie> movies;
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
+        await Task.Delay(3000);
+        movies = await service.GetMoviesAsync();
 
-        movies = new List<Movie>
-        {
-            new Movie{ Title = "Spider Man", ReleaseYear = 2019, Rating = 7.2},
-            new Movie{ Title = "Moana", ReleaseYear = 2016, Rating = 8.4},
-            new Movie{ Title = "Inception", ReleaseYear = 2010, Rating = 7.6},
-        };
     }
 }

@@ -1,14 +1,25 @@
-﻿<div>
-    <p>Title: @Movie.Title</p>
-    <p>Release year: @Movie.ReleaseYear</p>
-    <p>Rating: @Movie.Rating</p>
-
-    <button class="btn btn-danger" 
-            @onclick="() => DeleteMovie.InvokeAsync(Movie)">
-    Delete</button>
+﻿<div class="card col-3" style="width: 18rem;">
+    <img class="card-img-top" src="@Movie.PosterImage" alt="Card image cap" width="150px" height="450px">
+    <div class="card-body">
+        <label>Title:</label>
+        <input type="text" class="form-control mb-3" @bind="Movie.Title" disabled="@IsDisabled" @onblur="EnableInputs" />
+        <label>Year of Release:</label>
+        <input type="number" class="form-control mb-3" @bind="Movie.ReleaseYear" disabled />
+        <label>Rating:</label>
+        <input type="number" class="form-control mb-3" @bind="Movie.Rating" disabled />
+        <button class="btn btn-success" @onclick="(EnableInputs)">Edit</button>
+        <button class="btn btn-danger" @onclick="(() => DeleteMovie.InvokeAsync(Movie))">Delete</button>
+        <button class="btn btn-warning" @onclick="(() => AddMovie.InvokeAsync(Movie))">Add to Cart</button>
+    </div>
 </div>
-
 @code {
-    [Parameter] public Movie Movie { get; set; }
+    [Parameter]
+    public Movie Movie { get; set; }
     [Parameter] public EventCallback<Movie> DeleteMovie { get; set; }
+    [Parameter] public EventCallback<Movie> AddMovie { get; set; }
+    public bool IsDisabled { get; set; } = true;
+    void EnableInputs()
+    {
+        IsDisabled = IsDisabled ? false : true;
+    }
 }

@@ -1,25 +1,21 @@
 ﻿<h3>MovieList</h3>
 
-@if (Movies == null)
-{
-    <div>
-        <img src="./images/loading.gif" width="250" height="250" alt="loading..." />
-    </div>
-}
-else if (!Movies.Any())
+@if (!Movies.Any())
 {
     <p>There are no movies to show</p>
 }
 else
 {
-    @foreach (Movie movie in Movies)
-    {
-        <IndividualMovie Movie="movie" DeleteMovie="() => DeleteMovie(movie)"/>
-    }
+    <div class="row">
+        @foreach (Movie movie in Movies)
+        {
+            <IndividualMovie Movie="movie" DeleteMovie="() => DeleteMovie(movie)" />
+        }
+    </div>
 }
 
 @code {
-    [Parameter]public List<Movie> Movies { get; set; }
+    [Parameter] public List<Movie> Movies { get; set; }
 
     void DeleteMovie(Movie movie)
     {
