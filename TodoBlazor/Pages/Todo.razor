@@ -1,0 +1,53 @@
+﻿@page "/todo"
+
+<h1>Todo (@items.Count(x => !x.IsDone))</h1>
+
+<input type="text" placeholder="Add todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add Todo</button>
+
+@if (!items.Any())
+{
+    <div>
+        <img src="./images/loading.gif" width="250" height="250" alt="loading..." />
+    </div>
+}
+else
+{
+    <ul>
+        @foreach (TodoItem item in items)
+        {
+            <li>
+                <input type="checkbox" @bind="item.IsDone" />
+                <input type="text" @bind="item.Title" />
+                <p>@item.Title</p>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<TodoItem> items = new List<TodoItem>();
+    private string newTodo;
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrEmpty(newTodo))
+        {
+
+            items.Add(new TodoItem
+            {
+                IsDone = false,
+                Title = newTodo
+            });
+        }
+
+        newTodo = string.Empty;
+    }
+
+    public class TodoItem
+    {
+        public string Title { get; set; }
+
+        public bool IsDone { get; set; }
+    }
+}
