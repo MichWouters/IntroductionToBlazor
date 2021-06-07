@@ -14,15 +14,14 @@ else
 {
     @foreach (Movie movie in Movies)
     {
-        <IndividualMovie Movie="movie" DeleteMovie="DeleteMovie" />
+        <IndividualMovie Movie="movie" DeleteMovie="() => DeleteMovie(movie)"/>
     }
 }
 
 @code {
-    [Parameter]
-    public List<Movie> Movies { get; set; }
+    [Parameter]public List<Movie> Movies { get; set; }
 
-    public void DeleteMovie(Movie movie)
+    void DeleteMovie(Movie movie)
     {
         Movies.Remove(movie);
     }
