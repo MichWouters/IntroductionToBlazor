@@ -1,0 +1,9 @@
+﻿<p>Title: @Movie.Title</p>
+<p>Release year: @Movie.ReleaseYear</p>
+<p>Rating: @Movie.Rating</p>
+<button class="btn btn-danger" @onclick="(() => DeleteMovie.InvokeAsync(Movie))">Delete</button>
+
+@code {
+    [Parameter] public Movie Movie { get; set; }
+    [Parameter] public EventCallback<Movie> DeleteMovie { get; set; }
+}

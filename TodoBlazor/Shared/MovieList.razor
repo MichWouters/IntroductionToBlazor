@@ -14,13 +14,16 @@ else
 {
     @foreach (Movie movie in Movies)
     {
-        <a href="#">
-            <p>Title: @movie.Title</p>
-        </a>
+        <IndividualMovie Movie="movie" DeleteMovie="DeleteMovie" />
     }
 }
 
 @code {
     [Parameter]
     public List<Movie> Movies { get; set; }
+
+    public void DeleteMovie(Movie movie)
+    {
+        Movies.Remove(movie);
+    }
 }
