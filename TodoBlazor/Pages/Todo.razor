@@ -19,7 +19,7 @@ else
             <li>
                 <input type="checkbox" @bind="item.IsDone" />
                 <input type="text" @bind="item.Title" />
-                <p>@item.Title</p>
+                <button class="btn btn-danger" @onclick="() => DeleteToDo(item)">X</button>
             </li>
         }
     </ul>
@@ -42,6 +42,11 @@ else
         }
 
         newTodo = string.Empty;
+    }
+
+    private void DeleteToDo(TodoItem item)
+    {
+        items.Remove(item);
     }
 
     public class TodoItem
