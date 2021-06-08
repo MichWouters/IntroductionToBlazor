@@ -35,5 +35,10 @@ namespace TodoBlazor.Services
         {
             genres.Remove(genre);
         }
+
+        public Genre GetGenre(int id)
+        {
+            return genres.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

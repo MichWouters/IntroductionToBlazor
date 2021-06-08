@@ -3,6 +3,8 @@
     <div class="card-body">
         <label>Title:</label>
         <input type="text" class="form-control mb-3" @bind="Movie.Title" disabled="@IsDisabled" @onblur="EnableInputs" />
+        <label>Genre</label>
+        <input type="text" class="form-control mb-3" @bind="Movie.Genre.Name" disabled />
         <label>Released:</label>
         <input type="date" class="form-control mb-3" @bind="Movie.ReleaseDate" disabled />
         <label>Rating:</label>

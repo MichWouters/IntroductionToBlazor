@@ -9,5 +9,6 @@ namespace TodoBlazor.Services
         void DeleteGenre(Genre genre);
         void EditGenre(Genre genre);
         List<Genre> GetGenres();
+        Genre GetGenre(int genreId);
     }
 }
