@@ -7,5 +7,7 @@ namespace TodoBlazor.Services
     public interface IMovieService
     {
         List<Movie> GetMovies();
+
+        void AddMovie(Movie movie);
     }
 }

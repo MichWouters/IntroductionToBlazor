@@ -1,0 +1,64 @@
+﻿@page "/movie/create"
+@inject IMovieService service
+
+<h3>CreateMovie</h3>
+
+<EditForm Model="movie" OnValidSubmit="Create">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>Title: </label>
+        <div>
+            <InputText class="form-control" @bind-Value="@movie.Title" />
+            <ValidationMessage For="()=>movie.Title" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Description: </label>
+        <div>
+            <InputTextArea class="form-control" @bind-Value="@movie.Description" />
+            <ValidationMessage For="()=>movie.Description" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Poster Image: </label>
+        <div>
+            <InputText class="form-control" @bind-Value="@movie.PosterImage" />
+            <ValidationMessage For="()=>movie.PosterImage" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Rating: </label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@movie.Rating" />
+            <ValidationMessage For="()=>movie.Rating" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>ReleaseDate: </label>
+        <div>
+            <InputDate class="form-control" @bind-Value="@movie.ReleaseDate" />
+            <ValidationMessage For="()=>movie.ReleaseDate" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Available in theaters?: </label>
+        <div>
+            <InputCheckbox class="form-control" @bind-Value="@movie.IsInTheaters" />
+            <ValidationMessage For="()=>movie.IsInTheaters" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Add Movie</button>
+</EditForm>
+@code {
+    private Movie movie;
+
+    protected override void OnInitialized()
+    {
+        movie = new Movie();
+    }
+
+    private void Create()
+    {
+        service.AddMovie(movie);
+    }
+}
