@@ -6,6 +6,6 @@ namespace TodoBlazor.Services
 {
     public interface IMovieService
     {
-        Task<List<Movie>> GetMoviesAsync();
+        List<Movie> GetMovies();
     }
 }

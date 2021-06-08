@@ -15,10 +15,8 @@ else
 
 @code{
     List<Movie> movies;
-    protected override async void OnInitialized()
+    protected override void OnInitialized()
     {
-        await Task.Delay(3000);
-        movies = await service.GetMoviesAsync();
-
+        movies = service.GetMovies();
     }
 }

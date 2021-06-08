@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using TodoBlazor.Models;
 
 namespace TodoBlazor.Services
 {
     public class MovieService : IMovieService
     {
-        public async Task<List<Movie>> GetMoviesAsync()
+        public List<Movie> GetMovies()
         {
-            
-
             return new List<Movie>
             {
                 new Movie{ Title = "Shrek", ReleaseYear=2001, Rating = 10, PosterImage="https://images-na.ssl-images-amazon.com/images/I/51%2BWoZieYBL._AC_.jpg"},
