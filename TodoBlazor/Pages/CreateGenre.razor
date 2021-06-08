@@ -1,27 +1,9 @@
 ﻿@page "/genre/create"
 @inject IGenreService service
 
-<h3>CreateGenre</h3>
+<h3>Create a new Genre</h3>
 
-<EditForm Model="genre" OnValidSubmit="Create">
-    <DataAnnotationsValidator />
-    <div class="form-group">
-        <label>Name: </label>
-        <div>
-            <InputText class="form-control" @bind-Value="@genre.Name" />
-            <ValidationMessage For="()=>genre.Name" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Suitable for children?: </label>
-        <div>
-            <InputCheckbox class="form-control" @bind-Value="@genre.IsSuitableForChildren" />
-            <ValidationMessage For="()=>genre.IsSuitableForChildren" />
-        </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Add Genre</button>
-</EditForm>
+<GenreForm Genre="genre" OnValidSubmit="Create" />
 
 @code {
     private Genre genre;
@@ -33,8 +15,6 @@
 
     private void Create()
     {
-        Console.WriteLine(service.GetGenres().Count);
         service.AddGenre(genre);
-        Console.WriteLine(service.GetGenres().Count);
     }
 }

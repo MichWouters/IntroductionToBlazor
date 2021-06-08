@@ -1,0 +1,22 @@
+﻿@page "/genre/edit/{GenreId:int}"
+@inject IGenreService service
+
+<h3>Update existing Genre</h3>
+
+<GenreForm Genre="genre" OnValidSubmit="Update" />
+
+@code {
+    private Genre genre;
+
+    [Parameter] public int GenreId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        genre = service.GetGenre(GenreId);
+    }
+
+    private void Update()
+    {
+        service.EditGenre(genre);
+    }
+}
