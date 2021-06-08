@@ -1,5 +1,6 @@
 ﻿@page "/movie/create"
-@inject IMovieService service
+@inject IMovieService movieservice
+@inject IGenreService genreService
 
 <h3>CreateMovie</h3>
 
@@ -10,6 +11,18 @@
         <div>
             <InputText class="form-control" @bind-Value="@movie.Title" />
             <ValidationMessage For="()=>movie.Title" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Genre: </label>
+        <div>
+            <InputSelect @bind-Value="movie.GenreId">
+                @foreach (Genre genre in genres)
+                {
+                    <option value="@genre.Id">@genre.Name</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="()=>movie.GenreId" />
         </div>
     </div>
     <div class="form-group">
@@ -51,14 +64,16 @@
 </EditForm>
 @code {
     private Movie movie;
+    private Genre[] genres;
 
     protected override void OnInitialized()
     {
         movie = new Movie();
+        genres = genreService.GetGenres().ToArray();
     }
 
     private void Create()
     {
-        service.AddMovie(movie);
+        movieservice.AddMovie(movie);
     }
 }

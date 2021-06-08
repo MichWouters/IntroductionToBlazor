@@ -10,6 +10,11 @@ namespace TodoBlazor.Models
         [Required(ErrorMessage = "Titel is vereist")]
         public string Title { get; set; }
 
+        [Required(ErrorMessage ="Genre is verplicht")]
+        public int GenreId { get; set; }
+
+        public Genre Genre { get; set; }
+
         public string Description { get; set; }
 
         [Range(typeof(DateTime), "01/01/1950", "01/01/2021", ErrorMessage = "Datum moet tussen 1950 en 2021 liggen")]
